@@ -6,6 +6,9 @@ public class PlayerMotor : MonoBehaviour
     private Vector3 playerVelocity;
     private bool isGrounded;
     
+    [SerializeField]
+    private bool canMove = true;
+    
     public float speed = 5f;
     public float gravity = -9.81f;
     public float jumpHeight = 1.5f;
@@ -23,20 +26,22 @@ public class PlayerMotor : MonoBehaviour
 
     public void ProcessMove(Vector2 input)
     {
-        Vector3 moveDirection = Vector3.zero;
-        moveDirection.x = input.x;
-        moveDirection.z = input.y;
-        controller.Move(transform.TransformDirection(moveDirection) * (speed * Time.deltaTime));
-        playerVelocity.y += gravity * Time.deltaTime;
-        if(isGrounded && playerVelocity.y < 0)
-            playerVelocity.y = -2f;
-        controller.Move(playerVelocity * Time.deltaTime);
-        //Debug.Log(playerVelocity.y);
+        if (canMove)
+        {
+            Vector3 moveDirection = Vector3.zero;
+            moveDirection.x = input.x;
+            moveDirection.z = input.y;
+            controller.Move(transform.TransformDirection(moveDirection) * (speed * Time.deltaTime));
+            playerVelocity.y += gravity * Time.deltaTime;
+            if (isGrounded && playerVelocity.y < 0)
+                playerVelocity.y = -2f;
+            controller.Move(playerVelocity * Time.deltaTime);
+        }
     }
 
     public void Jump()
     {
-        if (isGrounded)
+        if (isGrounded && canMove)
         {
             playerVelocity.y = Mathf.Sqrt(jumpHeight * -3f * gravity);
         }
@@ -50,5 +55,15 @@ public class PlayerMotor : MonoBehaviour
     public void EndSprint()
     {
         speed = 5f;
+    }
+
+    public void LockPlayer()
+    {
+        canMove = false;
+    }
+
+    public void UnlockPlayer()
+    {
+        canMove = true;
     }
 }

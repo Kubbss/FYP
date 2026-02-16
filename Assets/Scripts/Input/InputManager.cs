@@ -7,6 +7,7 @@ public class InputManager : MonoBehaviour
     public InputSystem.PlayerActions playerActions;
     private PlayerMotor motor;
     private PlayerLook look;
+    private PlayerSprint sprint;
     
     void Awake()
     {
@@ -15,10 +16,11 @@ public class InputManager : MonoBehaviour
         
         motor = GetComponent<PlayerMotor>();
         look = GetComponent<PlayerLook>();
+        sprint = GetComponent<PlayerSprint>();
         
         playerActions.Jump.performed += ctx => motor.Jump();
-        playerActions.Sprint.started += ctx => motor.StartSprint();
-        playerActions.Sprint.canceled += ctx => motor.EndSprint();
+        playerActions.Sprint.started += ctx => sprint.TryStartSprint();
+        playerActions.Sprint.canceled += ctx => sprint.TryEndSprint();
     }
     
     void FixedUpdate()

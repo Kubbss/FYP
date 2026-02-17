@@ -18,6 +18,7 @@ GameObject:
   - component: {fileID: 982163760275975774}
   - component: {fileID: 1900827807084987235}
   - component: {fileID: 3685890450802295618}
+  - component: {fileID: 1841945940000022666}
   m_Layer: 0
   m_Name: Player
   m_TagString: Player
@@ -206,7 +207,25 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 2382862a765532e49a8787c981f5190b, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::PlayerSprint
+  sprint: 0
+  queSprint: 0
   sprintBar: {fileID: 0}
+--- !u!114 &1841945940000022666
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6112994751339410482}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 5d6c028614245614d8a023d0e9fb59a1, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::PlayerHealth
+  maxHealth: 100
+  chipSpeed: 2
+  frontHealthBar: {fileID: 0}
+  backHealthBar: {fileID: 0}
 --- !u!1 &6416786737415536048
 GameObject:
   m_ObjectHideFlags: 0

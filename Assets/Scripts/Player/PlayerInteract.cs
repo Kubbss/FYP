@@ -21,7 +21,7 @@ public class PlayerInteract : MonoBehaviour
     {
         playerUI.UpdateText(string.Empty);
         Ray ray = new Ray(cam.transform.position, cam.transform.forward);
-        Debug.DrawRay(ray.origin, ray.direction * distance, Color.red);
+        Debug.DrawRay(ray.origin, ray.direction * distance, Color.blue);
         RaycastHit hitInfo;
         if (Physics.Raycast(ray, out hitInfo, distance, layerMask))
         {

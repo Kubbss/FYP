@@ -11,7 +11,6 @@ public class Barrel : Interactable
 
     private void Start()
     {
-        this.promptMessage = "Hide";
         masterBarrel = GameObject.FindGameObjectWithTag("BarrelController").GetComponent<MasterBarrel>();
     }
 

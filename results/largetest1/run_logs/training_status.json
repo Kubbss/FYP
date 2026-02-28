@@ -1,0 +1,65 @@
+{
+    "Guard": {
+        "checkpoints": [
+            {
+                "steps": 999952,
+                "file_path": "results\\largetest1\\Guard\\Guard-999952.onnx",
+                "reward": null,
+                "creation_time": 1772296644.0143402,
+                "auxillary_file_paths": [
+                    "results\\largetest1\\Guard\\Guard-999952.pt"
+                ]
+            },
+            {
+                "steps": 1255228,
+                "file_path": "results\\largetest1\\Guard\\Guard-1255228.onnx",
+                "reward": 1.32128572676863,
+                "creation_time": 1772296826.3288836,
+                "auxillary_file_paths": [
+                    "results\\largetest1\\Guard\\Guard-1255228.pt"
+                ]
+            },
+            {
+                "steps": 1499956,
+                "file_path": "results\\largetest1\\Guard\\Guard-1499956.onnx",
+                "reward": 1.7981361630333572,
+                "creation_time": 1772297913.4712787,
+                "auxillary_file_paths": [
+                    "results\\largetest1\\Guard\\Guard-1499956.pt"
+                ]
+            },
+            {
+                "steps": 1999985,
+                "file_path": "results\\largetest1\\Guard\\Guard-1999985.onnx",
+                "reward": 1.8103757755774441,
+                "creation_time": 1772298265.6719153,
+                "auxillary_file_paths": [
+                    "results\\largetest1\\Guard\\Guard-1999985.pt"
+                ]
+            },
+            {
+                "steps": 2241945,
+                "file_path": "results\\largetest1\\Guard\\Guard-2241945.onnx",
+                "reward": 1.9018400132656097,
+                "creation_time": 1772298451.510042,
+                "auxillary_file_paths": [
+                    "results\\largetest1\\Guard\\Guard-2241945.pt"
+                ]
+            }
+        ],
+        "final_checkpoint": {
+            "steps": 2241945,
+            "file_path": "results\\largetest1\\Guard.onnx",
+            "reward": 1.9018400132656097,
+            "creation_time": 1772298451.510042,
+            "auxillary_file_paths": [
+                "results\\largetest1\\Guard\\Guard-2241945.pt"
+            ]
+        }
+    },
+    "metadata": {
+        "stats_format_version": "0.3.0",
+        "mlagents_version": "1.2.0.dev0",
+        "torch_version": "2.2.2+cu121"
+    }
+}

@@ -1,3 +1,4 @@
+using System.Collections.Generic;
 using System.Numerics;
 using UnityEngine;
 using UnityEngine.AI;
@@ -9,6 +10,9 @@ public class Enemy : MonoBehaviour
     private NavMeshAgent agent;
     private GameObject player;
     private Vector3 lastKnownPos;
+
+    [SerializeField]
+    private List<GameObject> barrelList;
     public NavMeshAgent Agent {get => agent;}
     public GameObject Player => player;
     public Vector3 LastKnownPos { get => lastKnownPos; set => lastKnownPos = value; }
@@ -27,12 +31,12 @@ public class Enemy : MonoBehaviour
         agent = GetComponent<NavMeshAgent>();
         stateMachine.Initialise();
         player = GameObject.FindWithTag("Player");
+        barrelList = new List<GameObject>();
     }
 
     
     void Update()
     {
-        CanSeePlayer();
         currentState = stateMachine.activeState.ToString();
     }
 
@@ -42,11 +46,11 @@ public class Enemy : MonoBehaviour
         {
             if (Vector3.Distance(transform.position, player.transform.position) <= sightDistance)
             {
-                Vector3 tartetDirection = player.transform.position - transform.position - (Vector3.up * eyeHeight);
-                float angleToPlayer = Vector3.Angle(tartetDirection, transform.forward);
+                Vector3 targetDirection = player.transform.position - transform.position - (Vector3.up * eyeHeight);
+                float angleToPlayer = Vector3.Angle(targetDirection, transform.forward);
                 if (angleToPlayer >= -fieldOfView && angleToPlayer <= fieldOfView)
                 {
-                    Ray ray = new Ray(transform.position + (Vector3.up * eyeHeight), tartetDirection);
+                    Ray ray = new Ray(transform.position + (Vector3.up * eyeHeight), targetDirection);
                     RaycastHit hitInfo = new RaycastHit();
                     if (Physics.Raycast(ray, out hitInfo, sightDistance))
                     {
@@ -63,4 +67,56 @@ public class Enemy : MonoBehaviour
 
         return false;
     }
+
+    public List<GameObject> CanSeeBarrels()
+    {
+        if (barrelList.Count <= 0)
+            return null;
+
+        List<GameObject> returnList = new List<GameObject>();
+        
+        foreach (GameObject barrel in barrelList)
+        {
+            if (barrel is not null)
+            {
+                Vector3 targetDirection = barrel.transform.position - transform.position - (Vector3.up * eyeHeight);
+                
+                Ray ray = new Ray(transform.position + (Vector3.up * eyeHeight), targetDirection);
+                RaycastHit hitInfo = new RaycastHit();
+
+                if (Physics.Raycast(ray, out hitInfo, sightDistance))
+                {
+                    if (hitInfo.transform.gameObject.CompareTag("Barrel"))
+                    {
+                        Debug.DrawRay(ray.origin, ray.direction * sightDistance, Color.yellow);
+                        returnList.Add(barrel);
+                    }
+                }
+            }
+        }
+        
+        return barrelList;
+    }
+
+    void OnTriggerEnter(Collider other)
+    {
+        if (!other.gameObject.CompareTag("Barrel"))
+            return;
+        
+        Debug.Log("Adding Barrel : " + other.transform.parent.name);
+        
+        barrelList.Add(other.gameObject);
+    }
+
+    void OnTriggerExit(Collider other)
+    {
+        if (!other.gameObject.CompareTag("Barrel"))
+            return;
+        
+        Debug.Log("Removing Barrel : " + other.transform.parent.name);
+        
+        barrelList.Remove(other.gameObject);
+    }
+    
+    
 }

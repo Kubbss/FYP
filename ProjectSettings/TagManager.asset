@@ -6,6 +6,7 @@ TagManager:
   tags:
   - BarrelController
   - Wall
+  - Barrel
   layers:
   - Default
   - TransparentFX

@@ -9,7 +9,7 @@ public class MasterBarrel : MonoBehaviour
     private Camera playerCam;
     private PlayerMotor motor;
     
-    public GameObject currentBarrel;
+    private GameObject currentBarrel = null;
     
     void Start()
     {
@@ -61,4 +61,8 @@ public class MasterBarrel : MonoBehaviour
         currentBarrel = null;
     }
     
+    public GameObject GetCurrentBarrel()
+    {
+        return currentBarrel;
+    }
 }

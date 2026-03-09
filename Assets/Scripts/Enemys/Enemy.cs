@@ -19,6 +19,8 @@ public class Enemy : MonoBehaviour
 
     [SerializeField]
     private string currentState;
+    
+    private MasterBarrel masterBarrel;
 
     public float sightDistance = 20f;
     public float fieldOfView = 85;
@@ -32,12 +34,15 @@ public class Enemy : MonoBehaviour
         stateMachine.Initialise();
         player = GameObject.FindWithTag("Player");
         barrelList = new List<GameObject>();
+        masterBarrel = GameObject.FindGameObjectWithTag("BarrelController").GetComponent<MasterBarrel>();
     }
 
     
     void Update()
     {
         currentState = stateMachine.activeState.ToString();
+
+        ListVisibleBarrels();
     }
 
     public bool CanSeePlayer()
@@ -68,7 +73,7 @@ public class Enemy : MonoBehaviour
         return false;
     }
 
-    public List<GameObject> CanSeeBarrels()
+    public List<GameObject> ListVisibleBarrels()
     {
         if (barrelList.Count <= 0)
             return null;
@@ -86,7 +91,7 @@ public class Enemy : MonoBehaviour
 
                 if (Physics.Raycast(ray, out hitInfo, sightDistance))
                 {
-                    if (hitInfo.transform.gameObject.CompareTag("Barrel"))
+                    if (hitInfo.transform == barrel.transform)
                     {
                         Debug.DrawRay(ray.origin, ray.direction * sightDistance, Color.yellow);
                         returnList.Add(barrel);
@@ -95,7 +100,17 @@ public class Enemy : MonoBehaviour
             }
         }
         
-        return barrelList;
+        return returnList;
+    }
+
+    public bool CheckIfPlayerInBarrel(GameObject barrel)
+    {
+        GameObject tempBarrel = masterBarrel.GetCurrentBarrel();
+        
+        if (tempBarrel is not null)
+            return tempBarrel.Equals(barrel.transform.parent.gameObject);
+        
+        return false;
     }
 
     void OnTriggerEnter(Collider other)

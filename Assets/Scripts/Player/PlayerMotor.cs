@@ -4,14 +4,20 @@ public class PlayerMotor : MonoBehaviour
 {
     private CharacterController controller;
     private Vector3 playerVelocity;
+    private Vector3 currentHorizontalVelocity;
     private bool isGrounded;
     
-    [SerializeField]
-    private bool canMove = true;
     
-    public float speed = 5f;
-    public float gravity = -9.81f;
-    public float jumpHeight = 1.5f;
+    [SerializeField] private bool canMove = true;
+    [SerializeField] private float speed = 5f;
+    [SerializeField] private float gravity = -9.81f;
+    [SerializeField] private float jumpHeight = 0.5f;
+    [SerializeField] private float acceleration = 18f;
+    [SerializeField] private float airDeceleration = 3f;
+    [SerializeField] private float groundedDeceleration = 25f;
+
+    public Vector3 CurrentHorizontalVelocity => currentHorizontalVelocity;
+    public bool IsGrounded => isGrounded;
     
     
     void Start()
@@ -26,6 +32,45 @@ public class PlayerMotor : MonoBehaviour
 
     public void ProcessMove(Vector2 input)
     {
+        if (!canMove)
+            return;
+
+        Vector3 inputDirection = new Vector3(input.x, 0f, input.y);
+        inputDirection = Vector3.ClampMagnitude(inputDirection, 1f);
+
+        Vector3 targetVelocity = transform.TransformDirection(inputDirection) * speed;
+
+        float currentRate;
+
+        if (inputDirection.sqrMagnitude > 0.01f)
+        {
+            currentRate = acceleration;
+        }
+        else
+        {
+            currentRate = isGrounded ? groundedDeceleration : airDeceleration;
+        }
+
+        currentHorizontalVelocity = Vector3.MoveTowards(
+            currentHorizontalVelocity,
+            targetVelocity,
+            currentRate * Time.deltaTime
+        );
+
+        if (isGrounded && playerVelocity.y < 0f)
+            playerVelocity.y = -2f;
+
+        playerVelocity.y += gravity * Time.deltaTime;
+
+        Vector3 finalVelocity = currentHorizontalVelocity;
+        finalVelocity.y = playerVelocity.y;
+
+        controller.Move(finalVelocity * Time.deltaTime);
+    }
+    
+    /*
+    public void ProcessMove(Vector2 input)
+    {
         if (canMove)
         {
             Vector3 moveDirection = Vector3.zero;
@@ -38,6 +83,7 @@ public class PlayerMotor : MonoBehaviour
             controller.Move(playerVelocity * Time.deltaTime);
         }
     }
+    */
 
     public void Jump()
     {

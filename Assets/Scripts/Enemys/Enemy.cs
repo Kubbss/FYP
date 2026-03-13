@@ -9,12 +9,15 @@ public class Enemy : MonoBehaviour
     private StateMachine stateMachine;
     private NavMeshAgent agent;
     private GameObject player;
+    private PlayerSprint playerSprint;
     private Vector3 lastKnownPos;
 
     [SerializeField]
     private List<GameObject> barrelList;
     public NavMeshAgent Agent {get => agent;}
     public GameObject Player => player;
+    
+    public PlayerSprint PlayerSprint => playerSprint;
     public Vector3 LastKnownPos { get => lastKnownPos; set => lastKnownPos = value; }
 
     [SerializeField]
@@ -23,9 +26,11 @@ public class Enemy : MonoBehaviour
     private MasterBarrel masterBarrel;
 
     public float sightDistance = 20f;
-    public float fieldOfView = 85;
-    public float eyeHeight;
+    public int hearDistance = 20;
+    public float fieldOfView = 85f;
+    public float eyeHeight = 0.6f;
     public Path path;
+    
     
     void Start()
     {
@@ -33,6 +38,7 @@ public class Enemy : MonoBehaviour
         agent = GetComponent<NavMeshAgent>();
         stateMachine.Initialise();
         player = GameObject.FindWithTag("Player");
+        playerSprint = player.GetComponent<PlayerSprint>();
         barrelList = new List<GameObject>();
         masterBarrel = GameObject.FindGameObjectWithTag("BarrelController").GetComponent<MasterBarrel>();
     }
@@ -113,25 +119,28 @@ public class Enemy : MonoBehaviour
         return false;
     }
 
+    public float GetPlayerDistance()
+    {
+        return Vector3.Distance(transform.position, player.transform.position);
+    }
+
     void OnTriggerEnter(Collider other)
     {
-        if (!other.gameObject.CompareTag("Barrel"))
-            return;
-        
-        Debug.Log("Adding Barrel : " + other.transform.parent.name);
-        
-        barrelList.Add(other.gameObject);
+        if (other.gameObject.CompareTag("Barrel"))
+        {
+           Debug.Log("Adding Barrel : " + other.transform.parent.name);
+                   
+            barrelList.Add(other.gameObject); 
+        }
     }
 
     void OnTriggerExit(Collider other)
     {
-        if (!other.gameObject.CompareTag("Barrel"))
-            return;
-        
-        Debug.Log("Removing Barrel : " + other.transform.parent.name);
-        
-        barrelList.Remove(other.gameObject);
+        if (other.gameObject.CompareTag("Barrel"))
+        {
+            Debug.Log("Removing Barrel : " + other.transform.parent.name);
+                    
+            barrelList.Remove(other.gameObject);
+        }
     }
-    
-    
 }

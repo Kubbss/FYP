@@ -34,6 +34,8 @@ public class StateMachine : MonoBehaviour
 
         if (activeState != null)
         {
+            Debug.Log("Changing state to " + newState);
+            
             activeState.stateMachine = this;
             activeState.enemy = GetComponent<Enemy>();
             activeState.Enter();

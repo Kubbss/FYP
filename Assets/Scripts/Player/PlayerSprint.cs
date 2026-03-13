@@ -3,7 +3,8 @@ using UnityEngine.UI;
 
 public class PlayerSprint : MonoBehaviour
 {
-
+    private PlayerMotor motor;
+    
     public float sprint;
     private float maxSprint = 5; //In Seconds
     private float sprintRegen = 0.5f; //0.5 = Every second regenerate 0.5 seconds of Sprint;
@@ -12,9 +13,10 @@ public class PlayerSprint : MonoBehaviour
 
     public bool queSprint = false; 
 
-    private PlayerMotor motor;
+    public bool IsSprinting => sprinting;
 
     public Image sprintBar;
+    
     
     
     void Start()

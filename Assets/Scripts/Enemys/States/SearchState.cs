@@ -15,6 +15,17 @@ public class SearchState : BaseState
         {
             stateMachine.ChangeState(new AttackState());
         }
+        
+        if (enemy.GetPlayerDistance() <= enemy.hearDistance)
+        {
+            if (enemy.PlayerSprint.IsSprinting)
+            {
+                enemy.LastKnownPos = enemy.Player.transform.position;
+                
+                Debug.Log("Heard Player at: " + enemy.LastKnownPos+ ": Going to investigate");
+                stateMachine.ChangeState(new SearchState());
+            }
+        }
 
         if (enemy.Agent.remainingDistance < enemy.Agent.stoppingDistance)
         {

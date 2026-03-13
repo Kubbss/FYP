@@ -17,7 +17,7 @@ public class AttackState : BaseState
         {
             losePlayerTimer = 0;
             moveTimer += Time.deltaTime;
-            enemy.transform.LookAt(enemy.Player.transform);
+            //enemy.transform.LookAt(enemy.Player.transform);
             if (moveTimer > 0.5)
             {
                 enemy.Agent.SetDestination(enemy.Player.transform.position);

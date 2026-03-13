@@ -30,6 +30,19 @@ public class PatrolState : BaseState
             stateMachine.ChangeState(new AttackState());
         }
         
+        //Debug.Log(enemy.GetPlayerDistance());
+        
+        if (enemy.GetPlayerDistance() <= enemy.hearDistance)
+        {
+            if (enemy.PlayerSprint.IsSprinting)
+            {
+                enemy.LastKnownPos = enemy.Player.transform.position;
+                
+                Debug.Log("Heard Player at: " + enemy.LastKnownPos+ ": Going to investigate");
+                stateMachine.ChangeState(new SearchState());
+            }
+        }
+        
         CheckIfCanSearchBarrel();
         PatrolCycle();
     }

@@ -2140,7 +2140,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 6a1049fde0e04d54cbc84c3f7104431a, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  currentBarrel: {fileID: 0}
 --- !u!4 &1213462863
 Transform:
   m_ObjectHideFlags: 0
@@ -4110,6 +4109,50 @@ PrefabInstance:
       propertyPath: m_Name
       value: Player
       objectReference: {fileID: 0}
+    - target: {fileID: 7125468367827901661, guid: 5d38d4642e74b8a47a49e6854cd0a437, type: 3}
+      propertyPath: footstepsSFX
+      value: 
+      objectReference: {fileID: 8300000, guid: ca9147c51084cee4a8772c819f2be558, type: 3}
+    - target: {fileID: 7260974375825232377, guid: 5d38d4642e74b8a47a49e6854cd0a437, type: 3}
+      propertyPath: m_Volume
+      value: 0.05
+      objectReference: {fileID: 0}
+    - target: {fileID: 7260974375825232377, guid: 5d38d4642e74b8a47a49e6854cd0a437, type: 3}
+      propertyPath: m_PlayOnAwake
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 7296054720941023742, guid: 5d38d4642e74b8a47a49e6854cd0a437, type: 3}
+      propertyPath: footstepClip
+      value: 
+      objectReference: {fileID: 8300000, guid: 7a53b4d7727df5741b2523095eb42fa2, type: 3}
+    - target: {fileID: 7296054720941023742, guid: 5d38d4642e74b8a47a49e6854cd0a437, type: 3}
+      propertyPath: stepDistance
+      value: 2.5
+      objectReference: {fileID: 0}
+    - target: {fileID: 7296054720941023742, guid: 5d38d4642e74b8a47a49e6854cd0a437, type: 3}
+      propertyPath: footstepClips.Array.size
+      value: 5
+      objectReference: {fileID: 0}
+    - target: {fileID: 7296054720941023742, guid: 5d38d4642e74b8a47a49e6854cd0a437, type: 3}
+      propertyPath: 'footstepClips.Array.data[0]'
+      value: 
+      objectReference: {fileID: 8300000, guid: 8fc252ff972370241b2451ee8684b871, type: 3}
+    - target: {fileID: 7296054720941023742, guid: 5d38d4642e74b8a47a49e6854cd0a437, type: 3}
+      propertyPath: 'footstepClips.Array.data[1]'
+      value: 
+      objectReference: {fileID: 8300000, guid: dbdad1c2d8b77324bba9b579cff98b8d, type: 3}
+    - target: {fileID: 7296054720941023742, guid: 5d38d4642e74b8a47a49e6854cd0a437, type: 3}
+      propertyPath: 'footstepClips.Array.data[2]'
+      value: 
+      objectReference: {fileID: 8300000, guid: 8a5d0caffed7ad8408762173197c89eb, type: 3}
+    - target: {fileID: 7296054720941023742, guid: 5d38d4642e74b8a47a49e6854cd0a437, type: 3}
+      propertyPath: 'footstepClips.Array.data[3]'
+      value: 
+      objectReference: {fileID: 8300000, guid: e7132f9c36139aa4499ff5c5e80e8eaa, type: 3}
+    - target: {fileID: 7296054720941023742, guid: 5d38d4642e74b8a47a49e6854cd0a437, type: 3}
+      propertyPath: 'footstepClips.Array.data[4]'
+      value: 
+      objectReference: {fileID: 8300000, guid: 68919eef930646c47baec2350ce2b51f, type: 3}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []

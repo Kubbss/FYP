@@ -7,6 +7,7 @@ TagManager:
   - BarrelController
   - Wall
   - Barrel
+  - PlayerUI
   layers:
   - Default
   - TransparentFX

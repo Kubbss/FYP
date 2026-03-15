@@ -8,6 +8,7 @@ public class InputManager : MonoBehaviour
     private PlayerMotor motor;
     private PlayerLook look;
     private PlayerSprint sprint;
+    private PauseMenu pauseMenu;
     
     void Awake()
     {
@@ -18,9 +19,12 @@ public class InputManager : MonoBehaviour
         look = GetComponent<PlayerLook>();
         sprint = GetComponent<PlayerSprint>();
         
+        pauseMenu = GameObject.FindWithTag("PlayerUI").GetComponent<PauseMenu>();
+        
         playerActions.Jump.performed += ctx => motor.Jump();
         playerActions.Sprint.started += ctx => sprint.TryStartSprint();
         playerActions.Sprint.canceled += ctx => sprint.TryEndSprint();
+        playerActions.PauseMenu.performed += ctx => pauseMenu.TogglePause();
     }
     
     void FixedUpdate()

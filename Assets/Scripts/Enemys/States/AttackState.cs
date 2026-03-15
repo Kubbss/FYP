@@ -1,3 +1,4 @@
+using JetBrains.Annotations;
 using UnityEngine;
 
 public class AttackState : BaseState
@@ -28,6 +29,22 @@ public class AttackState : BaseState
         else
         {
             losePlayerTimer += Time.deltaTime;
+
+            if (enemy.GetPlayerDistance() <= enemy.hearDistance)
+            {
+                if (enemy.PlayerSprint.IsSprinting)
+                {
+                    enemy.LastKnownPos = enemy.Player.transform.position;
+                
+                    Debug.Log("Heard Player at: " + enemy.LastKnownPos);
+                }
+            }
+            
+            if (enemy.Agent.remainingDistance < 1f)
+            {
+                enemy.RotateTowardsPlayer();
+            }
+            
             if (losePlayerTimer > 4)
             {
                 stateMachine.ChangeState(new SearchState());

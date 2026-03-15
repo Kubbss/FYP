@@ -2,6 +2,7 @@ using System.Collections.Generic;
 using System.Numerics;
 using UnityEngine;
 using UnityEngine.AI;
+using Quaternion = UnityEngine.Quaternion;
 using Vector3 = UnityEngine.Vector3;
 
 public class Enemy : MonoBehaviour
@@ -25,10 +26,13 @@ public class Enemy : MonoBehaviour
     
     private MasterBarrel masterBarrel;
 
+    [Header("Guard Values")]
     public float sightDistance = 20f;
     public int hearDistance = 20;
     public float fieldOfView = 85f;
     public float eyeHeight = 0.6f;
+    
+    [Header("Path")]
     public Path path;
     
     
@@ -122,6 +126,22 @@ public class Enemy : MonoBehaviour
     public float GetPlayerDistance()
     {
         return Vector3.Distance(transform.position, player.transform.position);
+    }
+    
+    public void RotateTowardsPlayer()
+    {
+        Vector3 direction = player.transform.position - agent.transform.position;
+        direction.y = 0f;
+
+        if (direction.sqrMagnitude < 0.001f)
+            return;
+
+        Quaternion targetRotation = Quaternion.LookRotation(direction);
+        agent.transform.rotation = Quaternion.RotateTowards(
+            agent.transform.rotation,
+            targetRotation,
+            agent.angularSpeed * Time.deltaTime
+        );
     }
 
     void OnTriggerEnter(Collider other)

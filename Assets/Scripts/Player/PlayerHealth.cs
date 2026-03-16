@@ -26,6 +26,7 @@ public class PlayerHealth : MonoBehaviour
     void Start()
     {
         health = maxHealth;
+        damageOverlay.gameObject.SetActive(true);
         damageOverlay.color = new Color(damageOverlay.color.r, damageOverlay.color.g, damageOverlay.color.b, 0);
         permanentOverlayThreshold /= 100f;
     }

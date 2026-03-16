@@ -333,6 +333,7 @@ MonoBehaviour:
   useEvents: 1
   promptMessage: '[E] Hide'
   masterBarrel: {fileID: 0}
+  playerOffset: 0
 --- !u!114 &6139696045204489663
 MonoBehaviour:
   m_ObjectHideFlags: 0

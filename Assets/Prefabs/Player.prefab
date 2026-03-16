@@ -185,8 +185,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   cam: {fileID: 4591620218005550776}
-  xSensitivity: 30
-  ySensitivity: 30
+  sensitivity: 30
 --- !u!114 &1900827807084987235
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -229,9 +228,9 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::PlayerHealth
   maxHealth: 100
   chipSpeed: 2
-  duration: 0
-  fadeSpeed: 0
-  permanentOverlayThreshold: 0
+  duration: 1
+  fadeSpeed: 1.5
+  permanentOverlayThreshold: 30
   frontHealthBar: {fileID: 0}
   backHealthBar: {fileID: 0}
   healthText: {fileID: 0}
@@ -248,8 +247,13 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 9382e4916aff86747adce871ab459b2b, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::PlayerFootsteps
-  footstepClips: []
-  stepDistance: 2
+  footstepClips:
+  - {fileID: 8300000, guid: 8fc252ff972370241b2451ee8684b871, type: 3}
+  - {fileID: 8300000, guid: dbdad1c2d8b77324bba9b579cff98b8d, type: 3}
+  - {fileID: 8300000, guid: 8a5d0caffed7ad8408762173197c89eb, type: 3}
+  - {fileID: 8300000, guid: e7132f9c36139aa4499ff5c5e80e8eaa, type: 3}
+  - {fileID: 8300000, guid: 68919eef930646c47baec2350ce2b51f, type: 3}
+  stepDistance: 2.5
   minMoveSpeed: 0.1
   minPitch: 0.8
   maxPitch: 1.2
@@ -266,7 +270,7 @@ AudioSource:
   m_audioClip: {fileID: 0}
   m_Resource: {fileID: 0}
   m_PlayOnAwake: 0
-  m_Volume: 1
+  m_Volume: 0.05
   m_Pitch: 1
   Loop: 0
   Mute: 0

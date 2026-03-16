@@ -9,6 +9,9 @@ public class Barrel : Interactable
     [SerializeField]
     private MasterBarrel masterBarrel;
 
+    public float playerOffset = 0f;
+    public float exitForwardOffset = 1.4f;
+
     private void Start()
     {
         masterBarrel = GameObject.FindGameObjectWithTag("BarrelController").GetComponent<MasterBarrel>();
@@ -18,7 +21,7 @@ public class Barrel : Interactable
     {
         if (isPlayerInside)
         {
-            masterBarrel.TrySetPlayerLocation(this.transform.position + (Vector3.forward * 1.4f) + (Vector3.up * 0.4f));
+            masterBarrel.TrySetPlayerLocation(this.transform.position + (Vector3.forward * exitForwardOffset) + (Vector3.up * 0.4f) + (Vector3.up * playerOffset));
             masterBarrel.ResetPlayerCam();
             masterBarrel.TryUnlockPlayer();
             isPlayerInside = false;
@@ -28,7 +31,7 @@ public class Barrel : Interactable
             if (masterBarrel.TryLockPlayer(transform.parent.gameObject))
             {
                 masterBarrel.TrySetPlayerLocation(transform.position - (Vector3.up * 100));
-                masterBarrel.TrySetPlayerCamLocation(transform.position);
+                masterBarrel.TrySetPlayerCamLocation(transform.position + (Vector3.up * playerOffset));
                 isPlayerInside = true;
             }
         }

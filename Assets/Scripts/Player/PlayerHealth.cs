@@ -34,6 +34,11 @@ public class PlayerHealth : MonoBehaviour
     
     void Update()
     {
+        if (health <= 0f)
+        {
+            GameManager.instance.KillPlayer();
+        }
+        
         health = Mathf.Clamp(health, 0f, maxHealth);
         UpdateHealthBar();
         UpdateDamageOverlay();

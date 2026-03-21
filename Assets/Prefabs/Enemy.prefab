@@ -328,7 +328,7 @@ NavMeshAgent:
   m_Enabled: 1
   m_AgentTypeID: 0
   m_Radius: 0.5
-  m_Speed: 3.5
+  m_Speed: 5
   m_Acceleration: 8
   avoidancePriority: 50
   m_AngularSpeed: 120
@@ -354,10 +354,13 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::Enemy
   barrelList: []
   currentState: 
-  sightDistance: 20
+  sightDistance: 40
   hearDistance: 20
   fieldOfView: 85
   eyeHeight: 0.6
+  damage: 30
+  damageInterval: 1
+  attackRange: 3
   path: {fileID: 0}
 --- !u!114 &1381109661853469174
 MonoBehaviour:

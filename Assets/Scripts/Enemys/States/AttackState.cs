@@ -5,15 +5,17 @@ public class AttackState : BaseState
 {
     private float moveTimer;
     private float losePlayerTimer;
-    
+    private float damageTimer;
     
     public override void Enter()
     {
-        
+        enemy.Agent.speed = 7f;
     }
 
     public override void Perform()
     {
+        damageTimer += Time.deltaTime;
+        
         if (enemy.CanSeePlayer())
         {
             losePlayerTimer = 0;
@@ -25,6 +27,16 @@ public class AttackState : BaseState
                 moveTimer = 0;
             }
             enemy.LastKnownPos = enemy.Player.transform.position;
+
+            if (enemy.GetPlayerDistance() < enemy.attackRange)
+            {
+                if (damageTimer > enemy.damageInterval)
+                {
+                    enemy.DamagePlayer();
+                    damageTimer = 0;
+                    
+                }
+            }
         }
         else
         {
@@ -45,8 +57,9 @@ public class AttackState : BaseState
                 enemy.RotateTowardsPlayer();
             }
             
-            if (losePlayerTimer > 4)
+            if (losePlayerTimer > 1)
             {
+                enemy.LastKnownPos = enemy.Player.transform.position;
                 stateMachine.ChangeState(new SearchState());
             }
         }

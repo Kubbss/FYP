@@ -25,6 +25,9 @@ public class InputManager : MonoBehaviour
         playerActions.Sprint.started += ctx => sprint.TryStartSprint();
         playerActions.Sprint.canceled += ctx => sprint.TryEndSprint();
         playerActions.PauseMenu.performed += ctx => pauseMenu.TogglePause();
+        
+        Cursor.lockState = CursorLockMode.Locked;
+        Cursor.visible = false;
     }
     
     void FixedUpdate()

@@ -21,6 +21,7 @@ public class PatrolState : BaseState
     public override void Enter()
     {
         ShuffleList(enemy.path.waypoints);
+        enemy.Agent.speed = 4f;
     }
 
     public override void Perform()

@@ -36,7 +36,8 @@ public class PlayerHealth : MonoBehaviour
     {
         if (health <= 0f)
         {
-            GameManager.instance.KillPlayer();
+            if (!GameManager.gameOver)
+                GameManager.instance.KillPlayer();
         }
         
         health = Mathf.Clamp(health, 0f, maxHealth);

@@ -8,6 +8,7 @@ TagManager:
   - Wall
   - Barrel
   - PlayerUI
+  - Door
   layers:
   - Default
   - TransparentFX

@@ -12,6 +12,8 @@ public class Enemy : MonoBehaviour
     private GameObject player;
     private PlayerSprint playerSprint;
     private Vector3 lastKnownPos;
+    
+    private PlayerHealth playerHealth;
 
     [SerializeField]
     private List<GameObject> barrelList;
@@ -31,6 +33,9 @@ public class Enemy : MonoBehaviour
     public int hearDistance = 20;
     public float fieldOfView = 85f;
     public float eyeHeight = 0.6f;
+    public float damage = 30f;
+    public float damageInterval = 1f;
+    public float attackRange = 3f;
     
     [Header("Path")]
     public Path path;
@@ -45,6 +50,7 @@ public class Enemy : MonoBehaviour
         playerSprint = player.GetComponent<PlayerSprint>();
         barrelList = new List<GameObject>();
         masterBarrel = GameObject.FindGameObjectWithTag("BarrelController").GetComponent<MasterBarrel>();
+        playerHealth = player.GetComponent<PlayerHealth>();
     }
 
     
@@ -142,6 +148,16 @@ public class Enemy : MonoBehaviour
             targetRotation,
             agent.angularSpeed * Time.deltaTime
         );
+    }
+
+    public void DamagePlayer()
+    {
+        playerHealth.TakeDamage(damage);
+    }
+
+    public void DoorOpenCheck()
+    {
+        
     }
 
     void OnTriggerEnter(Collider other)

@@ -1,16 +1,31 @@
 using UnityEngine;
+using System.Collections.Generic;
+using Unity.MLAgents;
 
 public class SearchState : BaseState
 {
     private float searchTimer;
     private float moveTimer;
+    private float waitTimer;
+    
+    private List<GameObject> barrelList;
+    
+    private float barrelSearchTimer;
+    private int barrelIndex = 0;
+    private bool isSearching;
+    private GameObject currentBarrel;
+    
     public override void Enter()
     {
         enemy.Agent.SetDestination(enemy.LastKnownPos);
+        enemy.Agent.speed = 6f;
+        barrelSearchTimer = 11f;
     }
 
     public override void Perform()
     {
+        SearchBarrelsInArea();
+        
         if (enemy.CanSeePlayer())
         {
             stateMachine.ChangeState(new AttackState());
@@ -27,7 +42,7 @@ public class SearchState : BaseState
             }
         }
 
-        if (enemy.Agent.remainingDistance < enemy.Agent.stoppingDistance)
+        if (enemy.Agent.remainingDistance < enemy.Agent.stoppingDistance && !isSearching)
         {
             searchTimer += Time.deltaTime;
             moveTimer += Time.deltaTime;
@@ -48,5 +63,15 @@ public class SearchState : BaseState
     public override void Exit()
     {
         
+    }
+
+    private void SearchBarrelsInArea()
+    {
+        barrelList = enemy.ListVisibleBarrels();
+
+        foreach (GameObject barrel in barrelList)
+        {
+            
+        }
     }
 }

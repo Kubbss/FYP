@@ -17,6 +17,8 @@ public class GameManager : MonoBehaviour
         {
             Destroy(gameObject);
         }
+        
+        gameOver = false;
     }
 
     public void KillPlayer()

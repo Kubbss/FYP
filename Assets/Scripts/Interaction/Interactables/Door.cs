@@ -12,8 +12,6 @@ public class Door : Interactable
 
     [SerializeField] private GameObject keyIcon;
     
-    private NavMeshObstacle obstacle;
-    
     private bool doorOpen;
     private Animator doorAnimator;
     private string originalText;
@@ -21,8 +19,6 @@ public class Door : Interactable
     void Start()
     {
         doorAnimator = door.GetComponent<Animator>();
-        
-        obstacle = door.GetComponent<NavMeshObstacle>();
         
         originalText = this.promptMessage;
 
@@ -34,12 +30,6 @@ public class Door : Interactable
             if (keyIcon != null)
                 keyIcon.SetActive(false);
         }
-
-        if (obstacle != null)
-        {
-            obstacle.enabled = !doorOpen;
-        }
-            
     }
 
     public void UnlockDoor()
@@ -76,11 +66,6 @@ public class Door : Interactable
                 
                 if (!canReuse)
                     gameObject.layer = LayerMask.NameToLayer("Default");
-                
-                if (obstacle != null)
-                {
-                    obstacle.enabled = !doorOpen;
-                }
             }
             return;
         }
@@ -92,13 +77,31 @@ public class Door : Interactable
                 
         doorOpen = !doorOpen;        
         doorAnimator.SetBool("IsOpen", doorOpen);
+    }
+
+    public void GuardOpenDoor()
+    {
+        if (doorOpen)
+            return;
         
-            
-        
-        
-        if (obstacle != null)
+        doorOpen = true;
+        doorAnimator.SetBool("IsOpen", doorOpen);
+    }
+
+    public void GuardCloseDoor()
+    {
+        if (!doorOpen)
+            return;
+
+        if (isLocked)
         {
-            obstacle.enabled = !doorOpen;
+            doorOpen = false;
+            doorAnimator.SetBool("IsOpen", doorOpen);
+        }
+        else if (canReuse)
+        {
+            doorOpen = false;
+            doorAnimator.SetBool("IsOpen", doorOpen);
         }
     }
 }

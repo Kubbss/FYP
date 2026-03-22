@@ -54,7 +54,7 @@ public class AttackState : BaseState
             
             if (enemy.Agent.remainingDistance < 1f)
             {
-                enemy.RotateTowardsPlayer();
+                enemy.RotateTowardsTransform(enemy.Player.transform);
             }
             
             if (losePlayerTimer > 1)

@@ -134,9 +134,9 @@ public class Enemy : MonoBehaviour
         return Vector3.Distance(transform.position, player.transform.position);
     }
     
-    public void RotateTowardsPlayer()
+    public void RotateTowardsTransform(Transform trans)
     {
-        Vector3 direction = player.transform.position - agent.transform.position;
+        Vector3 direction = trans.transform.position - agent.transform.position;
         direction.y = 0f;
 
         if (direction.sqrMagnitude < 0.001f)
@@ -155,9 +155,19 @@ public class Enemy : MonoBehaviour
         playerHealth.TakeDamage(damage);
     }
 
-    public void DoorOpenCheck()
+    public void SearchLocation(Vector3 location)
     {
-        
+        if (stateMachine.activeState is PatrolState)
+        {
+            Debug.Log("Enemy available for player area check : " + location);
+            
+            LastKnownPos = location;
+            stateMachine.ChangeState(new SearchState());
+        }
+        else
+        {
+            Debug.Log("This enemy is currently unavailable");
+        }
     }
 
     void OnTriggerEnter(Collider other)

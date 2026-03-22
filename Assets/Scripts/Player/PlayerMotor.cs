@@ -18,6 +18,7 @@ public class PlayerMotor : MonoBehaviour
 
     public Vector3 CurrentHorizontalVelocity => currentHorizontalVelocity;
     public bool IsGrounded => isGrounded;
+    public bool CanMove => canMove;
     
     
     void Start()

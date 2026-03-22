@@ -139,14 +139,21 @@ public class PatrolState : BaseState
         }
         else if (enemy.Agent.remainingDistance < 2)
         {
-            
             waitTimer += Time.deltaTime;
+            
+            
+            enemy.RotateTowardsTransform(currentBarrel.transform);
 
-            if (waitTimer > 3)
+            if (waitTimer > 4)
             {
                 if (enemy.CheckIfPlayerInBarrel(currentBarrel))
                 {
+                    if (GameManager.gameOver)
+                        return;
+                    
                     Debug.Log("Found Player In Barrel");
+                    
+                    GameManager.instance.KillPlayer();
                 }
                 else
                 {

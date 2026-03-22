@@ -9,6 +9,8 @@ TagManager:
   - Barrel
   - PlayerUI
   - Door
+  - Enemy
+  - EnemyMesh
   layers:
   - Default
   - TransparentFX

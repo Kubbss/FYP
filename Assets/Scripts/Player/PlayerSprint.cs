@@ -76,6 +76,9 @@ public class PlayerSprint : MonoBehaviour
     
     private void SprintOn()
     {
+        if (!motor.CanMove)
+            return;
+        
         sprinting = true;
         motor.StartSprint();
     }

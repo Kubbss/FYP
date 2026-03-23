@@ -1,5 +1,7 @@
 using System.Collections.Generic;
+using System.Numerics;
 using UnityEngine;
+using Vector3 = UnityEngine.Vector3;
 
 public class DirectorSystem : MonoBehaviour
 {
@@ -53,7 +55,20 @@ public class DirectorSystem : MonoBehaviour
             if (playerHotspots.Count == 0 ||
                 Vector3.Distance(player.position, playerHotspots[playerHotspots.Count - 1]) >= minimumDistanceForNewHotspot)
             {
-                playerHotspots.Add(player.position);
+                if (player.position.y < -50)
+                {
+                    playerHotspots.Add(player.position + Vector3.up * 100);
+                    
+                    Debug.Log(player.position + Vector3.up * 100);
+                }
+                else
+                {
+                    playerHotspots.Add(player.position);
+                    
+                    Debug.Log(player.position);
+                }
+                
+                
 
                 if (playerHotspots.Count > maxHotspots)
                     playerHotspots.RemoveAt(0);

@@ -104,7 +104,7 @@ public class SearchState : BaseState
                 currentBarrel = barrelList[barrelIndex];
                 onABarrel = true;
                 waitTimer = 0;
-                enemy.Agent.SetDestination(currentBarrel.transform.position + Vector3.forward * 1.4f); 
+                enemy.Agent.SetDestination(currentBarrel.transform.position + (currentBarrel.transform.forward * 1.4f)); 
             }
             else
             {
@@ -126,7 +126,7 @@ public class SearchState : BaseState
                 
                 enemy.RotateTowardsTransform(currentBarrel.transform);
 
-                if (waitTimer > 4)
+                if (waitTimer > 3)
                 {
                     if (enemy.CheckIfPlayerInBarrel(currentBarrel))
                     {

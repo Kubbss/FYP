@@ -1,23 +1,35 @@
 using UnityEngine;
 using UnityEngine.AI;
 
+[RequireComponent(typeof(AudioSource))]
+
 public class Door : Interactable
 {
     [SerializeField]
     private GameObject door;
 
+    [Header("Door Setup")]
     [SerializeField] private bool isLocked = false;
     [SerializeField] private bool hasKey = false;
     [SerializeField] private bool canReuse = false;
-
+    
+    [Header("Door SFX")]
+    
+    [SerializeField] private AudioClip doorInteractClip;
+    [SerializeField] private float doorInteractVolume = 1f;
+    
+    [Header("UI Elements")]
     [SerializeField] private GameObject keyIcon;
     
+    private AudioSource audioSource;
     private bool doorOpen;
     private Animator doorAnimator;
     private string originalText;
     
     void Start()
     {
+        audioSource = GetComponent<AudioSource>();
+        
         doorAnimator = door.GetComponent<Animator>();
         
         originalText = this.promptMessage;
@@ -63,6 +75,7 @@ public class Door : Interactable
                 
                 doorOpen = !doorOpen;
                 doorAnimator.SetBool("IsOpen", doorOpen);
+                PlayDoorInteractSFX();
                 
                 if (!canReuse)
                     gameObject.layer = LayerMask.NameToLayer("Default");
@@ -77,6 +90,7 @@ public class Door : Interactable
                 
         doorOpen = !doorOpen;        
         doorAnimator.SetBool("IsOpen", doorOpen);
+        PlayDoorInteractSFX();
     }
 
     public void GuardOpenDoor()
@@ -86,6 +100,7 @@ public class Door : Interactable
         
         doorOpen = true;
         doorAnimator.SetBool("IsOpen", doorOpen);
+        PlayDoorInteractSFX();
     }
 
     public void GuardCloseDoor()
@@ -97,11 +112,21 @@ public class Door : Interactable
         {
             doorOpen = false;
             doorAnimator.SetBool("IsOpen", doorOpen);
+            PlayDoorInteractSFX();
         }
         else if (canReuse)
         {
             doorOpen = false;
             doorAnimator.SetBool("IsOpen", doorOpen);
+            PlayDoorInteractSFX();
         }
+    }
+    
+    private void PlayDoorInteractSFX()
+    {
+        if (audioSource == null || doorInteractClip == null)
+            return;
+
+        audioSource.PlayOneShot(doorInteractClip, doorInteractVolume);
     }
 }

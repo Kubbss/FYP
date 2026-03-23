@@ -132,7 +132,7 @@ public class PatrolState : BaseState
         if (!isSearchingBarrel)
         {
             currentBarrel = barrelList[Random.Range(0, barrelList.Count - 1)];
-            enemy.Agent.SetDestination(currentBarrel.transform.position + Vector3.forward * 1.4f);
+            enemy.Agent.SetDestination(currentBarrel.transform.position + (currentBarrel.transform.forward * 1.4f));
             isSearchingBarrel = true;
             waitTimer = 0;
             lookTimer = 1;
@@ -144,7 +144,7 @@ public class PatrolState : BaseState
             
             enemy.RotateTowardsTransform(currentBarrel.transform);
 
-            if (waitTimer > 4)
+            if (waitTimer > 3)
             {
                 if (enemy.CheckIfPlayerInBarrel(currentBarrel))
                 {

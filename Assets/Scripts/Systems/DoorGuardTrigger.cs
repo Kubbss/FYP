@@ -16,12 +16,8 @@ public class DoorGuardTrigger : MonoBehaviour
 
     private void OnTriggerEnter(Collider other)
     {
-        Debug.Log(other.tag);
-        
         if (!other.CompareTag("EnemyMesh"))
             return;
-
-        Debug.Log("Guard Entered Door");
         
         guardsInTrigger++;
     
@@ -32,8 +28,6 @@ public class DoorGuardTrigger : MonoBehaviour
     {
         if (!other.CompareTag("EnemyMesh"))
             return;
-        
-        Debug.Log("Guard Exited Door");
 
         guardsInTrigger--;
 

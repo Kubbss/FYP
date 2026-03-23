@@ -7,7 +7,7 @@ public class PlayerSprint : MonoBehaviour
     
     public float sprint;
     private float maxSprint = 5; //In Seconds
-    private float sprintRegen = 0.5f; //0.5 = Every second regenerate 0.5 seconds of Sprint;
+    private float sprintRegen = 0.25f; //0.5 = Every second regenerate 0.5 seconds of Sprint;
     private float minToStartSprint = 0.2f; //Minimum Percentage needed to start sprint (Between 0 and 1)
     private bool sprinting;
 

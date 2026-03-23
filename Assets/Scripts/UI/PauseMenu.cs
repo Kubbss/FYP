@@ -38,6 +38,9 @@ public class PauseMenu : MonoBehaviour
 
    public void TogglePause()
    {
+      if (GameManager.gameOver)
+         return;
+      
       if (pauseMenuUI.activeSelf)
       {
          Resume();

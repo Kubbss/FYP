@@ -21,7 +21,7 @@ public class Barrel : Interactable
     {
         if (isPlayerInside)
         {
-            masterBarrel.TrySetPlayerLocation(this.transform.position + (Vector3.forward * exitForwardOffset) + (Vector3.up * 0.4f) + (Vector3.up * playerOffset));
+            masterBarrel.TrySetPlayerLocation(this.transform.position + (transform.forward * exitForwardOffset) + (Vector3.up * 0.4f) + (Vector3.up * playerOffset));
             masterBarrel.ResetPlayerCam();
             masterBarrel.TryUnlockPlayer();
             isPlayerInside = false;

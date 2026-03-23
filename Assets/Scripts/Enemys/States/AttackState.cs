@@ -32,9 +32,8 @@ public class AttackState : BaseState
             {
                 if (damageTimer > enemy.damageInterval)
                 {
-                    enemy.DamagePlayer();
+                    enemy.SwingSword();
                     damageTimer = 0;
-                    
                 }
             }
         }

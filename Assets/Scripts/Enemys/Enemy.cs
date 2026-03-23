@@ -1,5 +1,7 @@
+using System.Collections;
 using System.Collections.Generic;
 using System.Numerics;
+using Unity.VisualScripting;
 using UnityEngine;
 using UnityEngine.AI;
 using Quaternion = UnityEngine.Quaternion;
@@ -27,6 +29,9 @@ public class Enemy : MonoBehaviour
     private string currentState;
     
     private MasterBarrel masterBarrel;
+    
+    private Animator swordAnimator;
+    private bool isSwinging;
 
     [Header("Guard Values")]
     public float sightDistance = 20f;
@@ -51,6 +56,8 @@ public class Enemy : MonoBehaviour
         barrelList = new List<GameObject>();
         masterBarrel = GameObject.FindGameObjectWithTag("BarrelController").GetComponent<MasterBarrel>();
         playerHealth = player.GetComponent<PlayerHealth>();
+        swordAnimator = GetComponentInChildren<Animator>();
+        isSwinging = false;
     }
 
     
@@ -109,7 +116,7 @@ public class Enemy : MonoBehaviour
                 {
                     if (hitInfo.transform == barrel.transform)
                     {
-                        Debug.DrawRay(ray.origin, ray.direction * sightDistance, Color.yellow);
+                        //Debug.DrawRay(ray.origin, ray.direction * sightDistance, Color.yellow);
                         returnList.Add(barrel);
                     }
                 }
@@ -168,6 +175,24 @@ public class Enemy : MonoBehaviour
         {
             Debug.Log("This enemy is currently unavailable");
         }
+    }
+
+    public void SwingSword()
+    {
+        StartCoroutine(SwingCouroutine());
+    }
+
+    private IEnumerator SwingCouroutine()
+    {
+        isSwinging = true;
+        swordAnimator.SetBool("IsSwinging", isSwinging);
+        
+        yield return new WaitForSeconds(0.5f);
+        
+        DamagePlayer();
+        
+        isSwinging = false;
+        swordAnimator.SetBool("IsSwinging", isSwinging);
     }
 
     void OnTriggerEnter(Collider other)

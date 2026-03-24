@@ -34,7 +34,7 @@ public class GuardFootsteps : MonoBehaviour
         lastPosition = transform.position;
     }
 
-    void Update()
+    void FixedUpdate()
     {
         Vector3 currentPosition = transform.position;
         Vector3 movement = currentPosition - lastPosition;
@@ -52,10 +52,6 @@ public class GuardFootsteps : MonoBehaviour
                 PlayRandomFootstep();
                 distanceTravelled = 0f;
             }
-        }
-        else
-        {
-            distanceTravelled = 0f;
         }
     }
 

@@ -27,6 +27,9 @@ public class Enemy : MonoBehaviour
 
     [SerializeField]
     private string currentState;
+
+    [SerializeField] private Renderer eye1;
+    [SerializeField] private Renderer eye2;
     
     private MasterBarrel masterBarrel;
     
@@ -41,6 +44,7 @@ public class Enemy : MonoBehaviour
     public float damage = 30f;
     public float damageInterval = 1f;
     public float attackRange = 3f;
+    public int barrelSearchChance = 8;
     
     [Header("Path")]
     public Path path;
@@ -195,11 +199,17 @@ public class Enemy : MonoBehaviour
         swordAnimator.SetBool("IsSwinging", isSwinging);
     }
 
+    public void ChangeEyeColour(Color newColor)
+    {
+        eye1.material.color = newColor;
+        eye2.material.color = newColor;
+    }
+
     void OnTriggerEnter(Collider other)
     {
         if (other.gameObject.CompareTag("Barrel"))
         {
-           Debug.Log("Adding Barrel : " + other.transform.parent.name);
+           //Debug.Log("Adding Barrel : " + other.transform.parent.name);
                    
             barrelList.Add(other.gameObject); 
         }
@@ -209,7 +219,7 @@ public class Enemy : MonoBehaviour
     {
         if (other.gameObject.CompareTag("Barrel"))
         {
-            Debug.Log("Removing Barrel : " + other.transform.parent.name);
+            //Debug.Log("Removing Barrel : " + other.transform.parent.name);
                     
             barrelList.Remove(other.gameObject);
         }

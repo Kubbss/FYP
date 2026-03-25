@@ -12,6 +12,8 @@ public class DirectorSystem : MonoBehaviour
 
     [Header("Director Timing")]
     [SerializeField] private float searchCommandInterval = 30f;
+    
+    [SerializeField] MasterBarrel masterBarrel;
 
     private List<GameObject> enemies = new List<GameObject>();
     private List<Vector3> playerHotspots = new List<Vector3>();
@@ -43,8 +45,24 @@ public class DirectorSystem : MonoBehaviour
     private void Update()
     {
         if (player == null || enemies.Count == 0)
-            return;
+                    return;
+        
+        if (masterBarrel.playerBarrelUsage >= 15)
+        {
+            //Debug.Log("Player using a lot of barrels, increasing barrel searching");
+            
+            foreach (GameObject enemy in enemies)
+            {
+                Enemy temp = enemy.GetComponent<Enemy>();
 
+                //Debug.Log("Updated " + enemy + " for more barrel searching");
+                
+                temp.barrelSearchChance = 4;
+            }
+            
+            masterBarrel.playerBarrelUsage = -100;
+        }
+        
         hotspotTimer += Time.deltaTime;
         searchTimer += Time.deltaTime;
 

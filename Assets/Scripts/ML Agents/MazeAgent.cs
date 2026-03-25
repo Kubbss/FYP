@@ -17,6 +17,13 @@ public class MazeAgent : Agent
     [SerializeField] private float firstSightReward = 0.5f;
     [SerializeField] private AgentSightReward agentSightReward;
     
+    [SerializeField] private float stallCheckInterval = 1.0f;
+    [SerializeField] private float minMoveDistance = 0.25f;
+    [SerializeField] private float stallPenalty = 0.01f;
+    
+    private Vector3 lastCheckPosition;
+        private float stillTimer;
+    
     public Transform[] SpawnPoints;
     
     private PlayerNavmeshAgent agent;
@@ -66,6 +73,9 @@ public class MazeAgent : Agent
         bestDistanceToPlayer = startDistance;
 
         sawPlayerThisEpisode = false;
+        
+        lastCheckPosition = transform.position;
+        stillTimer = 0f;
 
         if (agentSightReward != null)
         {
@@ -97,6 +107,21 @@ public class MazeAgent : Agent
     public override void OnActionReceived(ActionBuffers actionBuffers)
     {
         MoveAgent(actionBuffers.DiscreteActions);
+        
+        stillTimer += Time.deltaTime;
+
+        if (stillTimer >= stallCheckInterval)
+        {
+            float movedDistance = Vector3.Distance(transform.position, lastCheckPosition);
+
+            if (movedDistance < minMoveDistance)
+            {
+                AddReward(-stallPenalty);
+            }
+
+            lastCheckPosition = transform.position;
+            stillTimer = 0f;
+        }
         
         AddReward(-totalPenaltyOverTime / MaxStep);
         

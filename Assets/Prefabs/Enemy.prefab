@@ -411,6 +411,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::Enemy
   barrelList: []
   currentState: 
+  eye1: {fileID: 4547164732731235096}
+  eye2: {fileID: 1961391762385181929}
   sightDistance: 40
   hearDistance: 20
   fieldOfView: 85

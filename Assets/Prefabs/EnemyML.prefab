@@ -269,6 +269,8 @@ MonoBehaviour:
   playerTarget: {fileID: 0}
   moveSpeed: 7
   rotationSpeed: 180
+  eye1: {fileID: 2935329519560859218}
+  eye2: {fileID: 3196889179173433935}
   damage: 30
 --- !u!114 &2824174866402253268
 MonoBehaviour:

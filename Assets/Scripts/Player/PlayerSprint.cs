@@ -6,8 +6,8 @@ public class PlayerSprint : MonoBehaviour
     private PlayerMotor motor;
     
     public float sprint;
-    private float maxSprint = 5; //In Seconds
-    private float sprintRegen = 0.25f; //0.5 = Every second regenerate 0.5 seconds of Sprint;
+    private float maxSprint = 6; //In Seconds
+    private float sprintRegen = 0.3f; //0.5 = Every second regenerate 0.5 seconds of Sprint;
     private float minToStartSprint = 0.2f; //Minimum Percentage needed to start sprint (Between 0 and 1)
     private bool sprinting;
 

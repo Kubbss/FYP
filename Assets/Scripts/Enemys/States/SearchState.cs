@@ -24,6 +24,8 @@ public class SearchState : BaseState
         onABarrel = false;
         barrelIndex = 0;
         barrelSearchTimes = 0;
+        
+        enemy.ChangeEyeColour(Color.red);
     }
 
     public override void Perform()

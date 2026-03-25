@@ -1,0 +1,65 @@
+{
+    "Guard": {
+        "checkpoints": [
+            {
+                "steps": 2999985,
+                "file_path": "results\\gameagent3\\Guard\\Guard-2999985.onnx",
+                "reward": 0.03567172138718888,
+                "creation_time": 1774394294.093211,
+                "auxillary_file_paths": [
+                    "results\\gameagent3\\Guard\\Guard-2999985.pt"
+                ]
+            },
+            {
+                "steps": 3499956,
+                "file_path": "results\\gameagent3\\Guard\\Guard-3499956.onnx",
+                "reward": null,
+                "creation_time": 1774394452.3338678,
+                "auxillary_file_paths": [
+                    "results\\gameagent3\\Guard\\Guard-3499956.pt"
+                ]
+            },
+            {
+                "steps": 3999974,
+                "file_path": "results\\gameagent3\\Guard\\Guard-3999974.onnx",
+                "reward": null,
+                "creation_time": 1774394609.005475,
+                "auxillary_file_paths": [
+                    "results\\gameagent3\\Guard\\Guard-3999974.pt"
+                ]
+            },
+            {
+                "steps": 4499973,
+                "file_path": "results\\gameagent3\\Guard\\Guard-4499973.onnx",
+                "reward": 0.20889090094715357,
+                "creation_time": 1774394765.3640864,
+                "auxillary_file_paths": [
+                    "results\\gameagent3\\Guard\\Guard-4499973.pt"
+                ]
+            },
+            {
+                "steps": 4687620,
+                "file_path": "results\\gameagent3\\Guard\\Guard-4687620.onnx",
+                "reward": null,
+                "creation_time": 1774394925.6806366,
+                "auxillary_file_paths": [
+                    "results\\gameagent3\\Guard\\Guard-4687620.pt"
+                ]
+            }
+        ],
+        "final_checkpoint": {
+            "steps": 4687620,
+            "file_path": "results\\gameagent3\\Guard.onnx",
+            "reward": null,
+            "creation_time": 1774394925.6806366,
+            "auxillary_file_paths": [
+                "results\\gameagent3\\Guard\\Guard-4687620.pt"
+            ]
+        }
+    },
+    "metadata": {
+        "stats_format_version": "0.3.0",
+        "mlagents_version": "1.2.0.dev0",
+        "torch_version": "2.2.2+cu121"
+    }
+}

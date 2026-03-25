@@ -5006,6 +5006,10 @@ PrefabInstance:
       propertyPath: path
       value: 
       objectReference: {fileID: 618220793}
+    - target: {fileID: 6289662377587760451, guid: e794b0717892a0b408eeadd23875b325, type: 3}
+      propertyPath: barrelSearchChance
+      value: 8
+      objectReference: {fileID: 0}
     - target: {fileID: 6311248428973600776, guid: e794b0717892a0b408eeadd23875b325, type: 3}
       propertyPath: m_TagString
       value: EnemyMesh
@@ -10703,6 +10707,10 @@ PrefabInstance:
       propertyPath: path
       value: 
       objectReference: {fileID: 1862771539}
+    - target: {fileID: 6289662377587760451, guid: e794b0717892a0b408eeadd23875b325, type: 3}
+      propertyPath: barrelSearchChance
+      value: 8
+      objectReference: {fileID: 0}
     - target: {fileID: 6311248428973600776, guid: e794b0717892a0b408eeadd23875b325, type: 3}
       propertyPath: m_TagString
       value: EnemyMesh
@@ -21148,6 +21156,7 @@ MonoBehaviour:
   minimumDistanceForNewHotspot: 0
   maxHotspots: 10
   searchCommandInterval: 120
+  masterBarrel: {fileID: 2074653638}
 --- !u!4 &592364201
 Transform:
   m_ObjectHideFlags: 0
@@ -33752,6 +33761,10 @@ PrefabInstance:
       propertyPath: path
       value: 
       objectReference: {fileID: 1336599985}
+    - target: {fileID: 6289662377587760451, guid: e794b0717892a0b408eeadd23875b325, type: 3}
+      propertyPath: barrelSearchChance
+      value: 8
+      objectReference: {fileID: 0}
     - target: {fileID: 6311248428973600776, guid: e794b0717892a0b408eeadd23875b325, type: 3}
       propertyPath: m_TagString
       value: EnemyMesh
@@ -70696,6 +70709,10 @@ PrefabInstance:
       propertyPath: path
       value: 
       objectReference: {fileID: 912920954}
+    - target: {fileID: 6289662377587760451, guid: e794b0717892a0b408eeadd23875b325, type: 3}
+      propertyPath: barrelSearchChance
+      value: 8
+      objectReference: {fileID: 0}
     - target: {fileID: 6311248428973600776, guid: e794b0717892a0b408eeadd23875b325, type: 3}
       propertyPath: m_TagString
       value: EnemyMesh
@@ -72201,6 +72218,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 6a1049fde0e04d54cbc84c3f7104431a, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::MasterBarrel
+  playerBarrelUsage: 0
 --- !u!4 &2074653639
 Transform:
   m_ObjectHideFlags: 0

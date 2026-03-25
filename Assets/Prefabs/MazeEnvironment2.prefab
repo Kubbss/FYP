@@ -2387,15 +2387,18 @@ MonoBehaviour:
   agentParameters:
     maxStep: 0
   hasUpgradedFromAgentParameters: 1
-  MaxStep: 50000
+  MaxStep: 30000
   playerTarget: {fileID: 3490304104662172929}
   groundRenderer: {fileID: 5141001407620740564}
   trainingArea: {fileID: 6080564740705560651}
   moveSpeed: 7
   rotationSpeed: 180
-  distanceRewardScale: 0.003
-  firstSightReward: 0.3
+  distanceRewardScale: 0.001
+  firstSightReward: 0.5
   agentSightReward: {fileID: 5255236649351036354}
+  stallCheckInterval: 1
+  minMoveDistance: 0.25
+  stallPenalty: 0.01
   SpawnPoints:
   - {fileID: 5700596109778906318}
   - {fileID: 6203218228644702732}
@@ -2412,9 +2415,9 @@ MonoBehaviour:
   - {fileID: 3045041528797901351}
   - {fileID: 294927015670091425}
   - {fileID: 2176739711248833501}
-  wallHitPenalty: 0.02
-  totalPenaltyOverTime: 5
-  reward: 1
+  wallHitPenalty: 0.01
+  totalPenaltyOverTime: 3
+  reward: 2
   cumalitiveReward: 0
 --- !u!114 &5255236649351036354
 MonoBehaviour:
@@ -2430,7 +2433,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::AgentSightReward
   mazeAgent: {fileID: 3719309956029260662}
   playerTarget: {fileID: 6360103706283224053}
-  sightDistance: 40
+  sightDistance: 30
   eyeHeight: 1
   fieldOfView: 90
 --- !u!114 &4740085510309316852
@@ -2642,7 +2645,7 @@ MonoBehaviour:
   m_RaysPerDirection: 10
   m_MaxRayDegrees: 70
   m_SphereCastRadius: 0.5
-  m_RayLength: 20
+  m_RayLength: 30
   m_RayLayerMask:
     serializedVersion: 2
     m_Bits: 4294967227

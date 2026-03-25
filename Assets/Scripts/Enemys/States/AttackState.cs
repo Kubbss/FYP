@@ -10,6 +10,8 @@ public class AttackState : BaseState
     public override void Enter()
     {
         enemy.Agent.speed = 7f;
+        
+        enemy.ChangeEyeColour(Color.red);
     }
 
     public override void Perform()

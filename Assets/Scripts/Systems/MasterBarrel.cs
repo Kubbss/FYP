@@ -10,6 +10,8 @@ public class MasterBarrel : MonoBehaviour
     private PlayerMotor motor;
     
     private GameObject currentBarrel = null;
+
+    public int playerBarrelUsage;
     
     void Start()
     {
@@ -41,6 +43,7 @@ public class MasterBarrel : MonoBehaviour
             motor.LockPlayer();
             //Debug.Log(currentBarrel.name);
             //Debug.Log(currentBarrel.transform.position);
+            playerBarrelUsage++;
             return true;
         }
 

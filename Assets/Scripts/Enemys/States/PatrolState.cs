@@ -8,8 +8,7 @@ public class PatrolState : BaseState
     private float lookTimer;
     
     private float barrelSearchTimer;
-    private float barrelChanceCheckFreqTimer = 6;
-    private int barrelChance = 5; // 1/X chance to search a barrel;
+    private float barrelChanceCheckFreqTimer = 6; // 1/X chance to search a barrel;
     
     private bool canSearchBarrel = false;
     private bool isSearchingBarrel = false;
@@ -22,6 +21,8 @@ public class PatrolState : BaseState
     {
         ShuffleList(enemy.path.waypoints);
         enemy.Agent.speed = 4f;
+        
+        enemy.ChangeEyeColour(Color.limeGreen);
     }
 
     public override void Perform()
@@ -108,7 +109,7 @@ public class PatrolState : BaseState
 
                 if (barrelList is not null && barrelList.Count > 0)
                 {
-                    if (1 == Random.Range(1, barrelChance))
+                    if (1 == Random.Range(1, enemy.barrelSearchChance))
                     {
                         canSearchBarrel = true;
                         barrelSearchTimer = 0;
